@@ -1,0 +1,70 @@
+搭建环境：
+1、第一次全局安装 npm install vue-cli -g
+
+2、vue init webpack .
+安装vue-router,不安装ESLint,tests,e2e;
+
+选择 yarn 安装依赖，不选择 npm 安装依赖；
+	原因：npm install 的时候巨慢。特别是新的项目拉下来需要半天，删除node_modules,重新install 时候依旧如此。
+	同一个项目，安装的时候无法保持一致性。由于package.json文件中版本号的特点。	yarn ：并行安装，支持离线模式，安装版本统一，更简洁的输出，多注册来源处理，更好的语义化
+
+3、装插件：
+	状态管理 vuex: yarn add vuex;
+	动画 animate.css: yarn add animate.css;
+	数据请求 axios: yarn add axios;
+	转化css: yarn add style-loader;在webpack.base.conf.js添加{
+		test:/\.css$/,
+		loader:'style-loader!css-loader',
+	}转化node_modules中的css
+	使用 sass: yarn add node-sass,yarn add sass-loader;在webpack.base.conf.js添加{
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
+      },使用:<style lang='scss' scoped ></style>
+
+4、使用过滤器：新建src/filters/index.js:
+	引入过滤文件 import {“过滤器名”} from './过滤器文件';
+	export default {“过滤器名”}
+	然后再mian.js里面全局注册：
+	import filters from './filters'
+	Object.keys(filters).forEach(key => Vue.filter(key, filters[key]));
+5、使用状态管理：新建src/store;需要导入全局中 （main.js{import store from './store'},还需要搭载到全局中；)
+	|-store
+	  |-index.js 管理state,action,mutations,getters四个过程，配置信息。
+	  |-types.js 定义需要的状态动作名称。
+	  |-state.js 定义状态动作的变量。
+	  |-actions.js 提交动作，和控制动作{
+          在需要提交状态的组件下，引入 import {mapActions} from "vuex",让mapActions来接管方法选项。
+          (1).methods:mapAction(
+            ['修改状态值的方法(actions.js中定义的)','...']
+          )
+          (2).若有自己的方法时 methods:{
+                             show(){},
+                             ...mapActions(
+                               ['修改状态值的方法(actions.js中定义的)','...']
+                             )
+                           }
+      }	
+	  |-mutations.js 处理（修改）动作状态
+	  |-getters.js 返回修改后动作的状态值{
+    2.    在需要用到状态改变的组件下，引入 import {mapGetters} from "vuex",让mapGetters来接管计算属性。
+         computed:mapGetters(
+              ['状态返回方法','...']
+            ),
+      }
+6、路由监听 watch:{
+	数据(){}
+	属性(){}
+	路由(){}
+	$router(to){
+		this.routerChange(to.path);
+	}
+	}
+	routerChange(path){
+		path = path.substring(1)...(路由路径是带有‘/’的，所以用取字符方法substring()来操作字符)
+              注意：当路径选取的路径带有传值路径时，可以用 indexof('路由名') !=-1来获取路由。
+		写css,js,状态，条件...
+	}
+
+
+
+	

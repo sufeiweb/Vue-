@@ -1,0 +1,3 @@
+	
+export const LOGINSTATE_TRUE = "LOGINSTATE_TRUE"; //登录
+export const LOGINSTATE_FALSE = "LOGINSTATE_FALSE";//未登录
