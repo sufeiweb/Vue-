@@ -44,6 +44,12 @@ router.beforeEach((to, from, next) => {
   }*/
 });
 
+//搭载common使用方法
+// 全局函数
+import common from './common';
+Vue.use(common);
+
+
 
 Vue.config.productionTip = false
 
