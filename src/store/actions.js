@@ -21,4 +21,14 @@ export default {
                     }) => {
     commit(types.ERRORSTATE_FALSE)
   },//隐藏错误信息
+  countDownStateTrue: ({
+                         commit, state
+                       }) => {
+    commit(types.COUNTDOWNSTATE_TRUE)
+  },//倒计时开始
+  countDownStateFalse: ({
+                          commit, state
+                        }) => {
+    commit(types.COUNTDOWNSTATE_FALSE)
+  },//倒计时结束
 }

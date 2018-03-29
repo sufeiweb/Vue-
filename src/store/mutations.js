@@ -7,10 +7,16 @@ export default {
   [types.LOGINSTATE_FALSE]: (state) => {
     state.loginState = false;
   },
-  [types.ERRORSTATE_TRUE]:(state)=>{
+  [types.ERRORSTATE_TRUE]: (state) => {
     state.errorState = true;
   },
-  [types.ERRORSTATE_FALSE]:(state)=>{
+  [types.ERRORSTATE_FALSE]: (state) => {
     state.errorState = false;
+  },
+  [types.COUNTDOWNSTATE_TRUE]: (state) => {
+    state.countDownState = true;
+  },
+  [types.COUNTDOWNSTATE_FALSE]: (state) => {
+    state.countDownState = false;
   },
 }

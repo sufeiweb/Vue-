@@ -1,12 +1,13 @@
 <template>
   <ul class="r-swiper-out" ref="swiperOut">
     <swiperOutItem/>
+    <countDownBtn/>
   </ul>
 </template>
 
 <script>
   import swiperOutItem from './swiperOutItem.vue';
-
+import countDownBtn from './countDownBtn.vue';
   export default {
     data() {
       return {
@@ -14,7 +15,7 @@
       }
     },
     components: {
-      swiperOutItem
+      swiperOutItem,countDownBtn
     },
     methods: {
       changeActiveItem(item) {

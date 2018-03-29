@@ -52,4 +52,48 @@ exports.install = function (Vue, options) {
     }
   }
 
-};
+  Vue.prototype.getCode = function (total_micro_second) {
+    let _this=this;
+    count_down(_this, total_micro_second)
+  };
+
+  function count_down(that, total_micro_second) {
+    that.$store.dispatch('countDownStateTrue');//倒计时开始
+    if (total_micro_second <= 0) {
+      that.$store.dispatch('countDownStateFalse');//倒计时开始
+      that.$store.state.countDownTxt = "重新发送";
+      // timeout则跳出递归
+      return;
+    }
+    // 渲染倒计时时钟
+    that.$store.state.countDownTxt = date_format(total_micro_second) + "s";
+    that.$store.dispatch('countDownStateTrue');//倒计时开始
+
+    setTimeout(function () {
+      // 放在最后--
+      total_micro_second -= 10;
+      count_down(that,total_micro_second);
+    }, 10)
+  }
+
+}
+
+function date_format(micro_second) {
+  // 秒数
+  var second = Math.floor(micro_second / 1000);
+  // 小时位
+  var hr = Math.floor(second / 3600);
+  // 分钟位
+  var min = fill_zero_prefix(Math.floor((second - hr * 3600) / 60));
+  // 秒位
+  var sec = fill_zero_prefix((second - hr * 3600 - min * 60)); // equal to => var sec = second % 60;
+  // 毫秒位，保留2位
+  var micro_sec = fill_zero_prefix(Math.floor((micro_second % 1000) / 10));
+
+  return sec;
+}
+
+// 位数不足补零
+function fill_zero_prefix(num) {
+  return num < 10 ? "0" + num : num
+}
