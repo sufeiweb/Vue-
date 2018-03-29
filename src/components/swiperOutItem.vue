@@ -4,7 +4,7 @@
          @touchstart="touchstart"
          @touchmove="touchmove"
          @touchend="touchend">
-      <slot>12345678</slot>
+      <slot>{{num|formatNumLength(8)}}</slot>
     </div>
     <div class="r-swiper-out-item-btns" ref="btns">
       <slot name="btns">
@@ -22,7 +22,8 @@
         startX: 0,
         translateX: 0,
         oldPoint: null,
-        btnsWidth: 0
+        btnsWidth: 0,
+        num:12345.432423
       }
     },
     computed: {
