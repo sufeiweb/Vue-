@@ -22,7 +22,6 @@
         //组件方法集合
         methods:{
           getCodes(){
-            console.log(111111)
               this.getCode(60000)
           }
         },
