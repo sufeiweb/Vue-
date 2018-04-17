@@ -12,6 +12,10 @@ export default {
   components:{
     ErrorTips
   },
+  
+  mounted(){
+    console.log(this.MD5('123456'))
+  },
   computed:{}
 }
 </script>

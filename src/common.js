@@ -1,5 +1,7 @@
 const config = require('../config');
 
+const md5 = require('js-md5')
+
 exports.install = function (Vue, options) {
   /**
    * 文本拷贝
@@ -53,7 +55,7 @@ exports.install = function (Vue, options) {
   }
 
   Vue.prototype.getCode = function (total_micro_second) {
-    let _this=this;
+    let _this = this;
     count_down(_this, total_micro_second)
   };
 
@@ -72,9 +74,13 @@ exports.install = function (Vue, options) {
     setTimeout(function () {
       // 放在最后--
       total_micro_second -= 10;
-      count_down(that,total_micro_second);
+      count_down(that, total_micro_second);
     }, 10)
   }
+  Vue.prototype.MD5 = function (str) {
+    return md5(str)
+  }
+
 
 }
 
